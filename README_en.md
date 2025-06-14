@@ -7,7 +7,6 @@
 
 <div align="center">
 
-![visitors](https://visitor-badge.laobi.icu/badge?page_id=jingyaogong/minimind-v)
 [![GitHub Repo stars](https://img.shields.io/github/stars/jingyaogong/minimind-v?style=social)](https://github.com/jingyaogong/minimind-v/stargazers)
 [![GitHub Code License](https://img.shields.io/github/license/jingyaogong/minimind-v?v=1)](LICENSE)
 [![GitHub last commit](https://img.shields.io/github/last-commit/jingyaogong/minimind-v)](https://github.com/jingyaogong/minimind-v/commits/master)
@@ -71,7 +70,17 @@ Is the training process difficult? Now, let's explore the answers and feel the j
 ### 👉**Recent Updates**
 
 <details close> 
-<summary> <b>2025-02-20 (newest 🎉)</b> </summary>
+<summary> <b>2025-04-27 (newest 🎉)</b> </summary>
+
+- Compatibility updates
+- Adapted to the new feature in the "minimind" repository
+- Standardized parts of the code
+
+</details>
+
+
+<details close> 
+<summary> <b>2025-02-20</b> </summary>
 
 - MiniMind2-V updated alongside MiniMind2
 - Significant reduction of all redundant code, standardized code format
@@ -116,6 +125,14 @@ git clone https://huggingface.co/openai/clip-vit-base-patch16
 # or
 git clone https://www.modelscope.cn/models/openai-mirror/clip-vit-base-patch16
 ```
+
+```bash
+# Download the pure language model to the ./out directory (as the base language model for training VLM):
+https://huggingface.co/jingyaogong/MiniMind2-V-PyTorch/blob/main/lm_512.pth
+# or
+https://huggingface.co/jingyaogong/MiniMind2-V-PyTorch/blob/main/lm_768.pth
+```
+
 
 ## Ⅰ Test an existing model's performance
 
@@ -330,7 +347,7 @@ Like LlaVA, Qwen-VL, and other visual language models, MiniMind-V also uses the 
 Visual Encoder.  
 Specifically, we use [clip-vit-base-patch16](https://huggingface.co/openai/clip-vit-base-patch16), a classic Visual
 Encoder based on the ViT-B/16 architecture for describing image-text information.  
-The input image size is 224x224, and because the Patch size is 16×16, it generates 16*16=196 tokens as the input to the
+The input image size is 224x224, and because the Patch size is 16×16, it generates 14*14=196 tokens as the input to the
 encoder layer, which produces a 1×768 dimensional embedding vector for calculating error with the text.  
 We don’t need the final embedding representation, so we only take the output from the encoder layer, which is the output
 feature from the core ViT backbone.  

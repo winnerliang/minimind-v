@@ -64,7 +64,16 @@
 ### 👉**最近更新**
 
 <details close> 
-<summary> <b>2025-02-20 (newest 🎉)</b> </summary>
+<summary> <b>2025-04-27 (newest 🎉)</b> </summary>
+
+- 兼容性更新
+- 适配[「minimind仓库新特性」](https://github.com/jingyaogong/minimind/issues/370)
+- 规范化部分代码
+
+</details>
+
+<details close> 
+<summary> <b>2025-02-20</b> </summary>
 
 - MiniMind2-V伴随MiniMind2同步更新
 - 大幅减少所有冗余代码，规范代码格式
@@ -108,6 +117,13 @@ git clone https://github.com/jingyaogong/minimind-v
 git clone https://huggingface.co/openai/clip-vit-base-patch16
 # or
 git clone https://www.modelscope.cn/models/openai-mirror/clip-vit-base-patch16
+```
+
+```bash
+# 下载纯语言模型权重到 ./out 目录下（作为训练VLM的基座语言模型）
+https://huggingface.co/jingyaogong/MiniMind2-V-PyTorch/blob/main/lm_512.pth
+# or
+https://huggingface.co/jingyaogong/MiniMind2-V-PyTorch/blob/main/lm_768.pth
 ```
 
 ## Ⅰ 测试已有模型效果
@@ -304,7 +320,7 @@ GPT模型根据现有token预测输出下一个下下一个下下下一个token 
 和LlaVA、Qwen-VL等视觉语言模型类似，MiniMind-V同样选用开源Clip系列模型作为Visual Encoder。
 具体使用[clip-vit-base-patch16](https://huggingface.co/openai/clip-vit-base-patch16)，
 一种基于 ViT-B/16 架构的经典Visual Encoder用于描述图像文本信息。
-输入的图像尺寸为224x224，因为划分的Patch是16×16，所以会产生16*16=196个token作为encoder编码层的输入，
+输入的图像尺寸为224x224，因为划分的Patch是16×16，所以会产生14*14=196个token作为encoder编码层的输入，
 最终产生1×768维的嵌入向量用于和文本对计算误差。
 我们并不需要最终嵌入表示，因此只取encoder层的输出，也就是VIT核心主干的输出特征即可。
 它拿到前一层维度196×768大小的特征，我们把它作为196个visual token输入MiniMind-V。
